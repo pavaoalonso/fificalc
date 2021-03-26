@@ -1,0 +1,200 @@
+
+<html>
+	<head>
+	
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		
+		<script src="jquery-3.0.0.js"></script>
+		<script src="jquery-maskmoney3_0_2.js"></script>
+		<script src="jquery-ui.js"></script>
+		<script src="fifiscript.js"></script>
+		
+		<link rel="stylesheet" href="fistyle.css">
+		<link rel="stylesheet" href="jquery-ui.css">
+				
+	</head>
+	
+	<body>
+		<div id="tabs" class="divTabela">
+			
+			 <ul>
+				<li><a href="#tabs-1">Calculadora</a></li>
+				<li><a href="#tabs-2" title="Se o Fifi não sabe, ninguém mais sabe!">As Quentinhas do Fifi</a></li>
+			</ul>
+			
+			<div id="tabs-1" class="conteudoAba" align="left">
+				<table id="corpo">
+					<tbody>
+						<tr>
+							<th id="topo" colspan="2">
+								<span id="spanIbov">Ibov</span> 
+								<span id="indiceIbov"></span>
+							</th>
+						</tr>
+						<tr>
+							<td colspan="2" title="Em fase de implementação !!!!">
+								<div id="divCheckCorretagem" align="left">
+									<input id="checkCorretagem" type="checkbox" checked />
+									<label for="checkCorretagem" class="obrigatorio"> * </label>
+									<label for="checkCorretagem"> Definir a corretagem de compra manualmente. </label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<table id="tabValoresCompras">
+									<tbody>
+										<tr>
+											<td class="colEsquerda" nowrap="true">
+												<label style="color:red" for="valorCompra1">Valor Compra</label>
+											</td>
+											<td>
+												<input id="valorCompra1" class="masc" type="text" title="Valor da ação na compra."/>
+											</td>
+											<td class='colEsquerda' nowrap="true"> 
+												<label for='quantAcoes1' title=''>Quant.</label> 
+											</td>
+											<td>
+												<input id='quantAcoes1' type='text' onkeypress="calcula();" onkeydown="calcula();" onkeyup="calcula();" title='Quantidade de ações compradas.'/>
+											</td>	
+											<td class="colEsquerda" nowrap="true">
+												<label for="valorCorretagemCompra1">Corretagem Compra</label>
+											</td>
+											<td class="colDireita">
+												<input id="valorCorretagemCompra1" class="masc" type="text" readOnly="true" disabled="true" title='Corretagem de compra.'/>
+											</td>
+											<td class="colEsquerda">
+												<label for="valorizacaoAcao1" nowrap="true">Valorização (%)</label>
+											</td>
+											<td class="colDireita">
+												<input id="valorizacaoAcao1" class="masc" type="text" readOnly="true" disabled="true" title="Valorização da ação."/>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td class="colEsquerda" colspan="2">
+								<input id="botaoInluiCompra" title="Incluir outra compra da mesma ação." type="image" src="https://cdn3.iconfinder.com/data/icons/sphericalcons/128/plus.png"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="colEsquerda">
+								<b style="color:red">
+									<label for="valorVenda">Valor Venda</label>
+								</b>
+							</td>
+							<td>
+								<input id="valorVenda" class="masc" type="text" onkeypress="calcula();" onkeydown="calcula();" onkeyup="calcula();" title="Valor esperado da ação na venda."/>
+							</td>
+						</tr>
+						<tr>
+							<td class="colEsquerda">
+								<i style="color:red"><label for="corretVenda">Corretagem Venda</label></i>
+							</td>
+							<td>
+								<input id="corretVenda" class="masc" onkeypress="calcula();" onkeydown="calcula();" onkeyup="calcula();" type="text" title="Corretagem total de venda."/>
+							</td>
+						</tr>
+						<tr>
+							<td class="colEsquerda">
+								<label for="quantAcoes">Quantidade Ações</label>
+							</td>
+							<td>
+								<input id="quantAcoes" class="masc" type="text" readOnly="true" disabled="true" title="Total de ações que serão vendidas."/>
+							</td>
+						</tr>
+						<tr>
+							<td class="colEsquerda tdCentro">
+								Valor Investido
+							</td>
+							<td class="colunaDireita tdCentro">
+								<input id="valorInvestido" class="masc" type="text" readOnly="true" disabled="true" title="Valor total investido (inluindo corretagens de compra)."/>
+							</td>
+						</tr>
+						<tr>
+							<td class="colEsquerda">
+								Valor Esperado
+							</td>
+							<td class="colunaDireita">
+								<input id="valorTotalEsperado" class="masc" type="text" readOnly="true" disabled="true" title="Valor total a ser recebido com a venda (corretagem de venda já descontada)."/>
+							</td>
+						</tr>
+						<tr>
+							<td class="colEsquerda">
+								Lucro Líquido Esperado (%)
+							</td>
+							<td class="colunaDireita">
+								<input id="porcentLucroLiqEsperada" class="masc" type="text" readOnly="true" disabled="true" title="Lucro total líquido em porcentagem."/>
+							</td>
+						</tr>
+						<tr>
+							<td class="colEsquerda">
+								<b style="color:blue">Lucro Líquido Esperado (R$)</b>
+							</td>
+							<td class="colunaDireita">
+								<input id="lucroEsperado" class="masc"  type="text" readOnly="true" disabled="true" title="Lucro total líquido."/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								&nbsp;
+							</td>
+						</tr>
+						<tfoot>
+							<tr>
+							  <th id="rodape" align="left" colspan="2">
+								Written by <a href="mailto:falecomofifi@fificalc.pe.hu">Fifi Trader</a>.
+							  </th>
+							</tr>
+						</tfoot>
+					</tbody>
+				</table>
+			</div>
+			
+			<div id="tabs-2" class="conteudoAba">
+				
+				<table class="quentinhasTable">
+					<tr>
+						<td colspan="2" align="right">
+							<input 
+								id="botaoAtualizaNoticias" 
+								type="image" 
+								title="Atualizar Notícias."
+								width="50" 
+								height="50"
+								src="https://cdn4.iconfinder.com/data/icons/VistaICO_Toolbar-Icons/128/Refresh.png"/>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<div class="frameNoticia">
+								<iframe src=""></iframe>
+							</div>
+						</td>
+						<td valign="top">
+							<div class="frameNoticia">
+								<iframe src=""></iframe>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<div class="frameNoticia">
+								<iframe src=""></iframe>
+							</div>
+						</td>
+						<td valign="top">
+							<div class="frameNoticia">
+								<iframe src=""></iframe>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
+		
